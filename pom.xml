@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>msv-usuarios</module>
+        <module>msv-cursos</module>
     </modules>
 
     <properties>
