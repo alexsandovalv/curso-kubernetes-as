@@ -1,4 +1,4 @@
-package com.sanvic.springcloud.msv.cursos.entity;
+package com.sanvic.springcloud.msv.cursos.models.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

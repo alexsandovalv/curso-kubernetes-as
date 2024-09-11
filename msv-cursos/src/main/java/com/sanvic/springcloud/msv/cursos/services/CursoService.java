@@ -1,6 +1,6 @@
 package com.sanvic.springcloud.msv.cursos.services;
 
-import com.sanvic.springcloud.msv.cursos.entity.Curso;
+import com.sanvic.springcloud.msv.cursos.models.entity.Curso;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package com.sanvic.springcloud.msv.cursos.controller;
 
-import com.sanvic.springcloud.msv.cursos.entity.Curso;
+import com.sanvic.springcloud.msv.cursos.models.entity.Curso;
 import com.sanvic.springcloud.msv.cursos.services.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

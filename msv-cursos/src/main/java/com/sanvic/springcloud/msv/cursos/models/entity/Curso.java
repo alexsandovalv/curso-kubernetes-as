@@ -1,5 +1,6 @@
-package com.sanvic.springcloud.msv.cursos.entity;
+package com.sanvic.springcloud.msv.cursos.models.entity;
 
+import com.sanvic.springcloud.msv.cursos.models.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -19,7 +20,11 @@ public class Curso {
     private String nombre;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "curso_id")
     private List<CursoUsuario> cursoUsuarios;
+
+    @Transient
+    private List<Usuario> usuarios;
 
     public void addCursoUsuario(CursoUsuario cursoUsuario) {
         cursoUsuarios.add(cursoUsuario);

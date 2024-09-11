@@ -1,6 +1,6 @@
 package com.sanvic.springcloud.msv.cursos.services;
 
-import com.sanvic.springcloud.msv.cursos.entity.Curso;
+import com.sanvic.springcloud.msv.cursos.models.entity.Curso;
 import com.sanvic.springcloud.msv.cursos.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
