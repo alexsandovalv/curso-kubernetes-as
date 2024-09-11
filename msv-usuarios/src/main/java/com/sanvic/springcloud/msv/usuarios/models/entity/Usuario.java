@@ -1,7 +1,9 @@
 package com.sanvic.springcloud.msv.usuarios.models.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -12,7 +14,10 @@ public class Usuario {
 
     private String nombre;
     private String apellido;
+
+    @Column(unique = true)
     private String email;
 
+    private String password;
 
 }
