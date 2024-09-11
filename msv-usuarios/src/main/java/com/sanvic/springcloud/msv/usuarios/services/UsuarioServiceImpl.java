@@ -12,39 +12,44 @@ import java.util.Optional;
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
-    private final UsuarioRepository usuarioRepository;
+    private final UsuarioRepository repository;
 
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioServiceImpl(UsuarioRepository repository) {
+        this.repository = repository;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> listar() {
-        return (List<Usuario>) usuarioRepository.findAll();
+        return (List<Usuario>) repository.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Usuario> porId(Long id) {
-        return usuarioRepository.findById(id);
+        return repository.findById(id);
     }
 
     @Override
     @Transactional
     public Usuario guardar(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+        return repository.save(usuario);
     }
 
     @Override
     @Transactional
     public void eliminar(Long id) {
-        usuarioRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public Optional<Usuario> porEmail(String email) {
-        return usuarioRepository.findByEmail(email);
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public boolean existePorEmail(String email) {
+        return repository.existsByEmail(email);
     }
 }

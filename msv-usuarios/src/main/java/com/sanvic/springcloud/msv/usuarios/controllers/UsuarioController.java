@@ -39,7 +39,7 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> crear(@Valid @RequestBody Usuario usuario, BindingResult result){
 
-        if (!usuario.getEmail().isEmpty() && service.porEmail(usuario.getEmail()).isPresent()) {
+        if (!usuario.getEmail().isEmpty() && service.existePorEmail(usuario.getEmail())) {
             return ResponseEntity.badRequest().body(Collections
                     .singletonMap("mensaje", "El email ya existe"));
         }
