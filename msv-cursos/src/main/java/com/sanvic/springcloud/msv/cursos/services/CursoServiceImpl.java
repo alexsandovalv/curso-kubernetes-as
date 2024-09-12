@@ -3,6 +3,7 @@ package com.sanvic.springcloud.msv.cursos.services;
 import com.sanvic.springcloud.msv.cursos.clients.UsuarioClientRest;
 import com.sanvic.springcloud.msv.cursos.models.Usuario;
 import com.sanvic.springcloud.msv.cursos.models.entity.Curso;
+import com.sanvic.springcloud.msv.cursos.models.entity.CursoUsuario;
 import com.sanvic.springcloud.msv.cursos.repository.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,20 @@ public class CursoServiceImpl implements CursoService{
 
     @Override
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+
+        if( o.isPresent() ) {
+            Usuario userMsvc = usuarioClientRest.detalle(usuario.getId());
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(userMsvc.getId());
+
+            curso.addCursoUsuario(cursoUsuario);
+            repository.save(curso);
+
+            return Optional.of(userMsvc);
+        }
         return Optional.empty();
     }
 
