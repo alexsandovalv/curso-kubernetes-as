@@ -23,4 +23,4 @@ COPY --from=builder /app/msv-usuarios/target/msv-usuarios-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8001
 
-CMD ["java", "-jar", "msv-usuarios-0.0.1-SNAPSHOT.jar"
+CMD ["java", "-jar", "msv-usuarios-0.0.1-SNAPSHOT.jar"]
