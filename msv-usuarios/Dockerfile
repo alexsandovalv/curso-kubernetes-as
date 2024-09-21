@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk-alpine as builder
 LABEL authors="sandovlu"
 
 WORKDIR /app/msvc-usuarios
@@ -14,6 +14,12 @@ RUN ./mvnw clean package -Dmaven.test.skip -Dmaven.main.skip -Dspring-boot.repac
 COPY ./msv-usuarios/src ./src
 
 RUN ./mvnw clean package -DskipTests
+
+FROM openjdk:17-jdk-alpine
+
+WORKDIR /app
+
+COPY --from=builder /app/msvc-usuarios/target/msv--usuarios-0.0.1-SNAPSHOT.jar .
 
 EXPOSE 8001
 
