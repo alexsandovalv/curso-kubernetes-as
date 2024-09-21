@@ -1,5 +1,6 @@
 package com.sanvic.springcloud.msv.usuarios.services;
 
+import com.sanvic.springcloud.msv.usuarios.clients.CursoClienteRest;
 import com.sanvic.springcloud.msv.usuarios.models.entity.Usuario;
 import com.sanvic.springcloud.msv.usuarios.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,12 @@ import java.util.Optional;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository repository;
+    private final CursoClienteRest cursoClienteRest;
 
     @Autowired
-    public UsuarioServiceImpl(UsuarioRepository repository) {
+    public UsuarioServiceImpl(UsuarioRepository repository, CursoClienteRest cursoClienteRest) {
         this.repository = repository;
+        this.cursoClienteRest = cursoClienteRest;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Transactional
     public void eliminar(Long id) {
         repository.deleteById(id);
+        cursoClienteRest.eliminarCursoUsuarioPorId(id);
     }
 
     @Override
