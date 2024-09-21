@@ -52,7 +52,6 @@ public class CursoServiceImpl implements CursoService{
     @Override
     public Optional<Usuario> asignarUsuario(Usuario usuario, Long cursoId) {
         Optional<Curso> o = repository.findById(cursoId);
-
         if( o.isPresent() ) {
             Usuario userMsvc = usuarioClientRest.detalle(usuario.getId());
 
@@ -70,11 +69,38 @@ public class CursoServiceImpl implements CursoService{
 
     @Override
     public Optional<Usuario> crearUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+        if( o.isPresent() ) {
+            Usuario userNuevoMsvc = usuarioClientRest.crear(usuario);
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(userNuevoMsvc.getId());
+
+            curso.addCursoUsuario(cursoUsuario);
+            repository.save(curso);
+
+            return Optional.of(userNuevoMsvc);
+        }
+
         return Optional.empty();
     }
 
     @Override
     public Optional<Usuario> eliminarUsuario(Usuario usuario, Long cursoId) {
+        Optional<Curso> o = repository.findById(cursoId);
+        if( o.isPresent() ) {
+            Usuario userMsvc = usuarioClientRest.detalle(usuario.getId());
+
+            Curso curso = o.get();
+            CursoUsuario cursoUsuario = new CursoUsuario();
+            cursoUsuario.setUsuarioId(userMsvc.getId());
+
+            curso.removeCursoUsuario(cursoUsuario);
+            repository.save(curso);
+
+            return Optional.of(userMsvc);
+        }
         return Optional.empty();
     }
 }
