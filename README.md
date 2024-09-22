@@ -73,3 +73,26 @@ docker run -p 8001:8001 -d -rm --name msv-usuarios --network spring usuarios
 ```shell
 docker run -p 8002:8002 -d -rm --name msv-cursos --network spring cursos
 ```
+
+### Descargando y corriendo las imagenes
+#### Mysql
+```shell
+docker pull mysql:latest
+```
+```shell
+docker run -d -p 3306:3306 --name mysql --network spring -e MYSQL_ROOT_PASSWORD=sasa -e MYSQL_DATABASE=msv_usuarios mysql:latest
+```
+Conectandome desde el terminal al contenedor:
+```shell
+$ docker exec -it mysql bash
+```
+Luego ingresar a la base de datos
+```shell
+#password = sasa
+$ mysql -u root -p
+Enter password:
+```
+Listamos los schemas creados:
+```shell
+SHOW DATABASES;
+```
