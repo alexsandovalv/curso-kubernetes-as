@@ -60,3 +60,16 @@ deleted: sha256:bf570a12fec04cfdb0c4410a55d37749cc7304bfc66f8888e980a92df29898df
 ```shell
 $ docker rmi e730f3005874 461cd7852525
 ```
+
+### Creando una red
+```shell
+docker network create spring
+```
+
+### Asociamos entre los contenedores la misma red
+```shell
+docker run -p 8001:8001 -d -rm --name msv-usuarios --network spring usuarios
+```
+```shell
+docker run -p 8002:8002 -d -rm --name msv-cursos --network spring cursos
+```
