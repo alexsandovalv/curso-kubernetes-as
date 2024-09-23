@@ -80,7 +80,7 @@ docker run -p 8002:8002 -d -rm --name msv-cursos --network spring cursos
 docker pull mysql:latest
 ```
 ```shell
-docker run -d -p 3306:3306 --name mysql --network spring -e MYSQL_ROOT_PASSWORD=sasa -e MYSQL_DATABASE=msv_usuarios mysql:latest
+docker run -d -p --rm 3306:3306 --name mysql --network spring -e MYSQL_ROOT_PASSWORD=sasa -e MYSQL_DATABASE=msv_usuarios mysql:latest
 ```
 Conectandome desde el terminal al contenedor:
 ```shell
@@ -95,4 +95,12 @@ Enter password:
 Listamos los schemas creados:
 ```shell
 SHOW DATABASES;
+```
+
+#### Postgres
+```shell
+docker pull postgres:14-alpine
+```
+```shell
+docker run -d -p --rm 5432:5432 --name postgres --network spring -e POSTGRES_PASSWORD=sasa -e POSTGRES_DB=msv_cursos postgres:14-alpine
 ```
