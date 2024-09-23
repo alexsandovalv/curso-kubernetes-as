@@ -97,6 +97,18 @@ Listamos los schemas creados:
 SHOW DATABASES;
 ```
 
+Para reiniciar un contenedor que ya se encuentra ejecutado
+```shell
+docker ps -a
+CONTAINER ID   IMAGE                                    COMMAND                  CREATED       STATUS                     PORTS     NAMES
+d253a6dde9d2   postgres:14-alpine                       "docker-entrypoint.s…"   7 hours ago   Exited (0) 7 hours ago               postgres
+1b1c4bc229bd   mysql:latest                             "docker-entrypoint.s…"   7 hours ago   Exited (0) 7 hours ago               mysql
+dc6d0e4e8443   oracleinanutshell/oracle-xe-11g:latest   "/bin/sh -c '/usr/sb…"   8 hours ago   Exited (137) 8 hours ago             musing_mirzakhani
+```
+```shell
+docker start mysql
+```
+
 #### Postgres
 ```shell
 docker pull postgres:14-alpine
