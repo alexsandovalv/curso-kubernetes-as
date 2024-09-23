@@ -68,10 +68,10 @@ docker network create spring
 
 ### Asociamos entre los contenedores la misma red
 ```shell
-docker run -p 8001:8001 -d -rm --name msv-usuarios --network spring usuarios
+docker run -p 8001:8001 -d --rm --name msv-usuarios --network spring usuarios
 ```
 ```shell
-docker run -p 8002:8002 -d -rm --name msv-cursos --network spring cursos
+docker run -p 8002:8002 -d --rm --name msv-cursos --network spring cursos
 ```
 
 ### Descargando y corriendo las imagenes
@@ -114,5 +114,8 @@ docker start mysql
 docker pull postgres:14-alpine
 ```
 ```shell
-docker run -p 5432:5432 -d --rm --name postgres --network spring -e POSTGRES_PASSWORD=sasa -e POSTGRES_DB=msv_cursos postgres:14-alpine
+docker run -p 5432:5432 -d --rm --name postgres14 --network spring -e POSTGRES_PASSWORD=sasa -e POSTGRES_DB=msv_cursos postgres:14-alpine
+```
+```shell
+docker start postgres
 ```
