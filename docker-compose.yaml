@@ -29,7 +29,9 @@ services:
 
   msv-usuarios:
     container_name: msv-usuarios
-    image: usuarios:latest
+    build:
+      context: ./
+      dockerfile: ./msv-usuarios/Dockerfile
     ports:
       - "8001:8001"
     #env_file:
@@ -42,7 +44,10 @@ services:
 
   msv-cursos:
     container_name: msv-cursos
-    image: cursos:latest
+    build:
+      context: ./
+      dockerfile: ./msv-cursos/Dockerfile
+    #image: cursos:latest
     ports:
       - "8002:8002"
     #env_file:
